@@ -3,6 +3,7 @@ package com.microservice.example.controllers;
 import com.microservice.example.config.JwtTokenUtil;
 import com.microservice.example.model.JwtRequest;
 import com.microservice.example.model.JwtResponse;
+import com.microservice.example.service.JwtUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
