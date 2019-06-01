@@ -37,7 +37,7 @@ public class JwtUserDetailsService implements UserDetailsService {
         }
 
         if (mUsername.equals(username)) {
-            return new User(mUsername, mPassword,
+            return new User(mUsername, bcryptEncoder.encode(mPassword),
                     new ArrayList<>());
         } else {
             throw new UsernameNotFoundException("User not found with username: " + username);
