@@ -43,6 +43,11 @@ public class JwtAuthenticationController {
         return ResponseEntity.ok(userRepository.save(user));
     }
 
+    @RequestMapping(value = "/all", method = RequestMethod.GET)
+    public ResponseEntity<?> returnUsername(@RequestBody UserModel userModel) {
+        return ResponseEntity.ok(userRepository.findByUsername(userModel.getUsername()));
+    }
+
     private void authenticate(String username, String password) throws Exception {
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
