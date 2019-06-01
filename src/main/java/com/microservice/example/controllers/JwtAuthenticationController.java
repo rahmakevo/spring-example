@@ -3,6 +3,8 @@ package com.microservice.example.controllers;
 import com.microservice.example.config.JwtTokenUtil;
 import com.microservice.example.model.JwtRequest;
 import com.microservice.example.model.JwtResponse;
+import com.microservice.example.model.UserModel;
+import com.microservice.example.repository.UserRepository;
 import com.microservice.example.service.JwtUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -25,6 +27,9 @@ public class JwtAuthenticationController {
     @Autowired
     JwtUserDetailsService userDetailsService;
 
+    @Autowired
+    UserRepository userRepository;
+
     @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
     public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest request) throws Exception {
         authenticate(request.getUsername(), request.getPassword());
@@ -34,8 +39,8 @@ public class JwtAuthenticationController {
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public ResponseEntity<?> saveUser(@RequestBody UserDTO user) throws Exception {
-        return ResponseEntity.ok(userDetailsService.save(user));
+    public ResponseEntity<?> saveUser(@RequestBody UserModel user) throws Exception {
+        return ResponseEntity.ok(userRepository.save(user));
     }
 
     private void authenticate(String username, String password) throws Exception {
