@@ -2,8 +2,6 @@ package com.microservice.example.service;
 
 import java.util.ArrayList;
 
-import com.microservice.example.model.DAOUser;
-import com.microservice.example.model.UserDTO;
 import com.microservice.example.repository.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
