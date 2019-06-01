@@ -6,6 +6,7 @@ import com.microservice.example.model.JwtResponse;
 import com.microservice.example.model.UserModel;
 import com.microservice.example.repository.UserRepository;
 import com.microservice.example.service.JwtUserDetailsService;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -35,7 +36,10 @@ public class JwtAuthenticationController {
         authenticate(request.getUsername(), request.getPassword());
         final UserDetails userDetails = userDetailsService.loadUserByUsername(request.getUsername());
         final String token = jwtTokenUtil.generateToken(userDetails);
-        return ResponseEntity.ok(new JwtResponse(token));
+        JSONObject object = new JSONObject();
+        object.put("access_token", token);
+        object.put("status", "authenticated");
+        return ResponseEntity.ok(object);
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
