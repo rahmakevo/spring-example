@@ -32,14 +32,14 @@ public class JwtAuthenticationController {
     UserRepository userRepository;
 
     @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
-    public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest request) throws Exception {
+    public String createAuthenticationToken(@RequestBody JwtRequest request) throws Exception {
         authenticate(request.getUsername(), request.getPassword());
         final UserDetails userDetails = userDetailsService.loadUserByUsername(request.getUsername());
         final String token = jwtTokenUtil.generateToken(userDetails);
         JSONObject object = new JSONObject();
         object.put("access_token", token);
         object.put("status", "authenticated");
-        return ResponseEntity.ok(object);
+        return String.valueOf(object);
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
