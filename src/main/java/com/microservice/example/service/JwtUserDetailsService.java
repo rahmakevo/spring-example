@@ -1,7 +1,12 @@
 package com.microservice.example.service;
 
-import java.util.ArrayList;
+import java.util.*;
 
+import com.microservice.example.model.UserModel;
+import com.microservice.example.repository.UserRepository;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,12 +19,25 @@ import org.springframework.stereotype.Service;
 public class JwtUserDetailsService implements UserDetailsService {
 
     @Autowired
+    private UserRepository repository;
+
+    @Autowired
     private PasswordEncoder bcryptEncoder;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        if ("javainuse".equals(username)) {
-            return new User("javainuse", "$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6",
+        String mUsername = "";
+        String mPassword = "";
+        Iterable<UserModel> iterable = repository.findAll();
+        ArrayList<UserModel> mUserList = new ArrayList<>((Collection<? extends UserModel>) iterable);
+        for (int i = 0; i == mUserList.size(); i++) {
+            UserModel mUserObject = mUserList.get(i);
+            mUsername = mUserObject.getUsername();
+            mPassword = mUserObject.getPassword();
+        }
+
+        if (mUsername.equals(username)) {
+            return new User(mUsername, mPassword,
                     new ArrayList<>());
         } else {
             throw new UsernameNotFoundException("User not found with username: " + username);
