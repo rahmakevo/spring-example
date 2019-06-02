@@ -18,5 +18,10 @@ public class MovieController {
         return repository.save(model);
     }
 
+    @GetMapping("/delete")
+    public void deleteMovie(@RequestBody String title) {
+        MovieModel model = repository.findByTitle(title);
+        repository.deleteById(model.getId());
+    }
 
 }
