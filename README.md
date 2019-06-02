@@ -3,7 +3,7 @@
 Spring Boot example is a sample java microservice that is a RESTFUL Web Service. The web api has several endpoints. It is accessible and has been hosted on Cloud.
 
 ## Getting Started
-
+```
 Download Postman
 We have several endpoints i.e
 (i).   register
@@ -17,6 +17,7 @@ We have several endpoints i.e
        This is a secure endpoint
        Requires a Header as "Authorization": "Bearer+" "+access token;
        Requires a json Body with paramas : title(String), description(String), rating(int) and watched(Boolean)
+```
        
 ## Prerequisites
 
