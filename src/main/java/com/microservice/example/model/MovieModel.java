@@ -11,6 +11,7 @@ import javax.validation.constraints.NotNull;
 public class MovieModel {
     @NotNull
     @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer id;
 
     private String title;
