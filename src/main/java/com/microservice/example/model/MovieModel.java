@@ -2,16 +2,15 @@ package com.microservice.example.model;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Data
+@Table(name = "movie")
 public class MovieModel {
+    @NotNull
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer id;
 
     private String title;
