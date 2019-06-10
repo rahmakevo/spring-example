@@ -9,7 +9,6 @@ import javax.validation.constraints.NotNull;
 @Data
 @Table(name = "movie")
 public class MovieModel {
-    @NotNull
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer id;
