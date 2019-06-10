@@ -3,10 +3,8 @@ package com.microservice.example.controllers;
 import com.microservice.example.model.MovieModel;
 import com.microservice.example.repository.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class MovieController {
@@ -18,5 +16,9 @@ public class MovieController {
         return repository.save(model);
     }
 
+    @RequestMapping(value = "/all", method = RequestMethod.GET)
+    public ResponseEntity<?> getAll() {
+        return ResponseEntity.ok(repository.findAll());
+    }
 
 }
