@@ -2,6 +2,8 @@ package com.microservice.example.controllers;
 
 import com.microservice.example.model.MovieModel;
 import com.microservice.example.repository.MovieRepository;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,8 +24,13 @@ public class MovieController {
     }
 
     @RequestMapping(value ="/delete", method = RequestMethod.POST)
-    public ResponseEntity<?> deleteByName(@RequestParam String title) {
-        return ResponseEntity.ok(repository.findByTitle(title));
+    public String deleteByName(@RequestBody String title) throws JSONException {
+        MovieModel model = repository.findByTitle(title);
+        repository.deleteById(model.getId());
+        JSONObject object = new JSONObject();
+        object.put("message", title+" deleted successfully");
+        object.put("status", "delete");
+        return String.valueOf(object);
     }
 
 }
