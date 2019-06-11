@@ -24,9 +24,11 @@ public class MovieController {
     }
 
     @RequestMapping(value ="/delete", method = RequestMethod.POST)
-    public ResponseEntity<?> deleteById(@RequestParam String title) {
+    public ResponseEntity<?> deleteByModel(@RequestParam String title) {
         MovieModel model = repository.findByTitle(title);
-        return ResponseEntity.ok(model);
+        // delete by model
+        repository.delete(model);
+        return ResponseEntity.ok(repository.findAll());
     }
 
 }
