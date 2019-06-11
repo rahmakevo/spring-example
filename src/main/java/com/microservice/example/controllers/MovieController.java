@@ -29,7 +29,7 @@ public class MovieController {
         JSONObject object = new JSONObject();
         object.put("message", title+" deleted successfully "+model.getId());
         object.put("status", "delete");
-        return String.valueOf(object);
+        return String.valueOf(repository.findByTitle(title));
     }
 
 }
