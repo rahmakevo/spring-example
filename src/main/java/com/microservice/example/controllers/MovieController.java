@@ -24,11 +24,7 @@ public class MovieController {
     }
 
     @RequestMapping(value ="/delete", method = RequestMethod.POST)
-    public String deleteByName(@RequestBody String title) throws JSONException {
-        MovieModel model = repository.findByTitle(title);
-        JSONObject object = new JSONObject();
-        object.put("message", title+" deleted successfully "+model.getId());
-        object.put("status", "delete");
+    public String deleteByName(@RequestBody String title) {
         return String.valueOf(repository.findByTitle(title));
     }
 
