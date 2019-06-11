@@ -38,5 +38,4 @@ public class MovieController {
         }
         return ResponseEntity.ok(object);
     }
-
 }
