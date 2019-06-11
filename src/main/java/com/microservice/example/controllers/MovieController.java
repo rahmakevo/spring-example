@@ -24,11 +24,19 @@ public class MovieController {
     }
 
     @RequestMapping(value ="/delete", method = RequestMethod.POST)
-    public ResponseEntity<?> deleteByModel(@RequestParam String title) {
+    public ResponseEntity<?> deleteByModel(@RequestParam String title) throws JSONException {
         MovieModel model = repository.findByTitle(title);
+        JSONObject object = new JSONObject();
         // delete by model
-        repository.delete(model);
-        return ResponseEntity.ok(repository.findAll());
+        if (!(model == null)) {
+            repository.delete(model);
+            object.put("status", "delete");
+            object.put("message", "deleted successfully");
+        } else {
+            object.put("status", "delete");
+            object.put("message", "deleted unsuccessfully");
+        }
+        return ResponseEntity.ok(object);
     }
 
 }
