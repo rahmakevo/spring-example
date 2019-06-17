@@ -9,7 +9,7 @@ We have several endpoints i.e
 (i).   register
        This is not a secure endpoint
        Requires a json Body with params : username(String) and password(String)
-(ii).  authenticate
+(ii).  login
        This is not a secure endpoint
        Requires a json Body with params : username(String) and password(String)
        On successful authentication one will receive an access token
@@ -17,6 +17,13 @@ We have several endpoints i.e
        This is a secure endpoint
        Requires a Header as "Authorization": "Bearer+" "+access token;
        Requires a json Body with paramas : title(String), description(String), rating(int) and watched(Boolean)
+(iv).  all
+       This is not a secure endpoint
+       Returns all the movie descriptions saved
+(v).   delete
+       This is a secure endpoint
+       Requires a Header as "Authorization": "Bearer+" "+access token;
+       Requires a json Body with paramas : title(String)
 ```
        
 ## Prerequisites
