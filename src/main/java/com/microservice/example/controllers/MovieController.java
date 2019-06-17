@@ -24,7 +24,7 @@ public class MovieController {
     }
 
     @RequestMapping(value ="/delete", method = RequestMethod.POST)
-    public ResponseEntity<?> deleteByModel(@RequestParam String title) throws JSONException {
+    public String deleteByModel(@RequestParam String title) throws JSONException {
         MovieModel model = repository.findByTitle(title);
         JSONObject object = new JSONObject();
         // delete by model
@@ -36,6 +36,6 @@ public class MovieController {
             object.put("status", "delete");
             object.put("message", "deleted unsuccessfully");
         }
-        return ResponseEntity.ok(object);
+        return String.valueOf(object);
     }
 }
