@@ -24,6 +24,10 @@ We have several endpoints i.e
        This is a secure endpoint
        Requires a Header as "Authorization": "Bearer+" "+access token;
        Requires a json Body with paramas : title(String)
+(vi).  actuator/health
+       This is a secure endpoint
+       Requires a Header as "Authorization": "Bearer+" "+access token;
+       No param is required for this endpoint
 ```
        
 ## Prerequisites
